@@ -4,11 +4,20 @@
 
 const mongoose = require('mongoose');
 
-const postSchema = new mongoose.Schema({
-	title: String,
-	content: String,
-	communityNum:Number
-},{collection:'Posts'});
+const postSchema = new mongoose.Schema(
+  {
+    title: String,
+    content: String,
+    communityNum: Number,
+    userNum: Number,
+    // 유저 컬랙션에서 참고하고자 하는 도큐먼트의 오브젝트_아이디가 등록되면 해당 다큐먼트의 정보 모두를 포스트에서 불러올수 있도록 하기 위한 설정
+    writer: {
+      ref: 'User',
+      type: mongoose.Schema.Types.ObjectId
+    }
+  },
+  { collection: 'Posts', timestamps: true }
+);
 
 const Post = mongoose.model('Post', postSchema);
 module.exports = { Post };

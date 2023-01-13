@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/community', require('./router/communityRouter'));
-
+app.use('/api/user', require('./router/userRouter'));
 //MongoDB 접속
 app.listen(port, () => {
   mongoose
